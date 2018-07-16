@@ -48,7 +48,7 @@ export class Helpers {
 
   // Protocols
 
-  adoptedProtocolsForVariant(variant: Variant, adoptedProtocols: [string]): [string] {
+  adoptedProtocolsForVariant(variant: Variant, adoptedProtocols: string[]): string[] {
     if (this.options != undefined && !this.options.supportArcBlockSDK) {
       return adoptedProtocols;
     }
