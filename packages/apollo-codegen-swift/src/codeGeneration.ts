@@ -114,7 +114,7 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
   fileHeader() {
     this.printOnNewline('//  This file was automatically generated and should not be edited.');
     this.printNewline();
-    this.printOnNewline('import Apollo');
+    this.printOnNewline(this.helpers.getFileHeader());
   }
 
   classDeclarationForOperation(operation: Operation) {
@@ -126,7 +126,7 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
     switch (operationType) {
       case 'query':
         className = `${this.helpers.operationClassName(operationName)}Query`;
-        protocol = 'GraphQLQuery';
+        protocol = this.helpers.protocolForQueryOperation(operation);
         break;
       case 'mutation':
         className = `${this.helpers.operationClassName(operationName)}Mutation`;
@@ -290,6 +290,7 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
     before?: Function,
     after?: Function
   ) {
+    adoptedProtocols = this.helpers.adoptedProtocolsForVariant(variant, adoptedProtocols);
     this.structDeclaration({ structName, adoptedProtocols }, () => {
       if (before) {
         before();

@@ -42,6 +42,7 @@ export interface CompilerOptions {
   namespace?: string;
   generateOperationIds?: boolean;
   operationIdsPath?: string;
+  supportArcBlockSDK?: boolean;
 }
 
 export interface CompilerContext {
@@ -64,6 +65,7 @@ export interface Operation {
   source: string;
   rootType: GraphQLObjectType;
   selectionSet: SelectionSet;
+  isPaged: boolean;
 }
 
 export interface Fragment {
@@ -191,6 +193,8 @@ class Compiler {
   addTypeUsed(type: GraphQLType) {
     if (this.typesUsedSet.has(type)) return;
 
+    if (this.options.supportArcBlockSDK && (type.toString() == "PageInput" || type.toString() == "PageOrder")) return;
+
     if (
       type instanceof GraphQLEnumType ||
       type instanceof GraphQLInputObjectType ||
@@ -218,9 +222,13 @@ class Compiler {
     const operationName = operationDefinition.name.value;
     const operationType = operationDefinition.operation;
 
+    let isPaged = false;
     const variables = (operationDefinition.variableDefinitions || []).map(node => {
       const name = node.variable.name.value;
       const type = typeFromAST(this.schema, node.type as NonNullTypeNode);
+      if (this.options.supportArcBlockSDK && (type as GraphQLType).toString() == "PageInput") {
+          isPaged = true;
+      }
       this.addTypeUsed(getNamedType(type as GraphQLType));
       return { name, type: type as GraphQLNonNull<any> };
     });
@@ -235,7 +243,8 @@ class Compiler {
       variables,
       source,
       rootType,
-      selectionSet: this.compileSelectionSet(operationDefinition.selectionSet, rootType, false)
+      selectionSet: this.compileSelectionSet(operationDefinition.selectionSet, rootType, false),
+      isPaged
     };
   }
 
@@ -343,7 +352,7 @@ class Compiler {
           deprecationReason: deprecationReason || undefined
         };
 
-        if (isCompositeType(unmodifiedFieldType)) {
+        if (isCompositeType(unmodifiedFieldType) && (fieldType.toString() != "PageInfo" || !this.options.supportArcBlockSDK)) {
           const selectionSetNode = selectionNode.selectionSet;
           if (!selectionSetNode) {
             throw new GraphQLError(

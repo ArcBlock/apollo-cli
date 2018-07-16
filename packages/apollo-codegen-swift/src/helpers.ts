@@ -24,6 +24,7 @@ import { CompilerOptions, SelectionSet, Field, FragmentSpread, Argument } from '
 import { isMetaFieldName } from 'apollo-codegen-core/lib/utilities/graphql';
 import { Variant } from 'apollo-codegen-core/lib/compiler/visitors/typeCase';
 import { collectAndMergeFields } from 'apollo-codegen-core/lib/compiler/visitors/collectAndMergeFields';
+import { Operation } from 'apollo-codegen-core/lib/compiler';
 
 const builtInScalarMap = {
   [GraphQLString.name]: 'String',
@@ -35,6 +36,39 @@ const builtInScalarMap = {
 
 export class Helpers {
   constructor(public options: CompilerOptions) {}
+
+  // Header
+  getFileHeader(): string{
+    let header = 'import Apollo';
+    if (this.options != undefined && this.options.supportArcBlockSDK) {
+        header += "\nimport ArcBlockSDK";
+    }
+    return header;
+  }
+
+  // Protocols
+
+  adoptedProtocolsForVariant(variant: Variant, adoptedProtocols: [string]): [string] {
+    if (this.options != undefined && !this.options.supportArcBlockSDK) {
+      return adoptedProtocols;
+    }
+    for (const selection of variant.selections) {
+      if (selection.kind == "Field") {
+          const type = (selection as Field).type;
+          if (type.toString() == "PageInfo") {
+            return ['PagedData'];
+          }
+      }
+    }
+    return adoptedProtocols;
+  }
+
+  protocolForQueryOperation(operation: Operation): string {
+    if (this.options != undefined && !this.options.supportArcBlockSDK) {
+      return 'GraphQLQuery';
+    }
+    return operation.isPaged ? 'GraphQLPagedQuery' : 'GraphQLQuery';
+  }
 
   // Types
 

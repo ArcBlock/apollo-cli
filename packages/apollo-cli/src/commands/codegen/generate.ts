@@ -96,6 +96,9 @@ export default class Generate extends Command {
     }),
     watch: flags.boolean({
       description: "Watch the query files to auto-generate on changes."
+    }),
+    supportArcBlockSDK: flags.boolean({
+      description: "Generate codes that works with ArcBlockSDK"
     })
   };
 
@@ -288,7 +291,8 @@ export default class Generate extends Command {
               mergeInFieldsFromFragmentSpreads:
                 flags.mergeInFieldsFromFragmentSpreads,
               useFlowExactObjects: flags.useFlowExactObjects,
-              useFlowReadOnlyTypes: flags.useFlowReadOnlyTypes
+              useFlowReadOnlyTypes: flags.useFlowReadOnlyTypes,
+              supportArcBlockSDK: flags.supportArcBlockSDK
             }
           );
 
