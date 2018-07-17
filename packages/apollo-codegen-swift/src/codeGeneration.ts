@@ -192,6 +192,11 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
           this.printNewlineIfNeeded();
           this.initializerDeclarationForProperties(properties);
 
+          if (this.helpers.options != undefined && this.helpers.options.supportArcBlockSDK && operation.isPaged) {
+            this.printNewlineIfNeeded();
+            this.copyFunctionDeclarationForProperties(properties);
+          }
+
           this.printNewlineIfNeeded();
           this.printOnNewline(`public var variables: GraphQLMap?`);
           this.withinBlock(() => {
@@ -618,6 +623,22 @@ export class SwiftAPIGenerator extends SwiftGenerator<CompilerContext> {
       properties.forEach(({ propertyName }) => {
         this.printOnNewline(`self.${propertyName} = ${escapeIdentifierIfNeeded(propertyName)}`);
       });
+    });
+  }
+
+  copyFunctionDeclarationForProperties(properties: Property[]) {
+    this.printOnNewline(`public func copy() -> Self`);
+    this.withinBlock(() => {
+      this.printOnNewline('return type(of: self).init(');
+      this.print(
+        join(
+          properties.map(({ propertyName }) =>
+            `${escapeIdentifierIfNeeded(propertyName)}: ${propertyName}`
+          ),
+          ', '
+        )
+      );
+      this.print(')');
     });
   }
 
