@@ -20,4 +20,3 @@ install:
 
 script:
   - npm test
-  - cd packages/apollo-cli && ./bin/run queries:check --queries="./src/operations/*" --key=$STAGING_API_KEY --engine=https://engine-staging-graphql.apollographql.com/api/graphql
