@@ -20,7 +20,7 @@ $ npm install -g apollo
 $ apollo COMMAND
 running command...
 $ apollo (-v|--version|version)
-apollo/1.4.0 darwin-x64 node-v10.4.1
+apollo/1.4.1 darwin-x64 node-v10.0.0
 $ apollo --help [COMMAND]
 USAGE
   $ apollo COMMAND
@@ -91,6 +91,8 @@ OPTIONS
 
   --schema=schema                            Path to your GraphQL schema (.graphql, .json, .js, .ts)
 
+  --supportArcBlockSDK                       Generate codes that works with ArcBlockSDK
+
   --tagName=tagName                          [default: gql] Name of the template literal tag used to identify template
                                              literals containing GraphQL queries in Javascript/Typescript code
 
@@ -104,7 +106,7 @@ OPTIONS
   --watch                                    Watch the query files to auto-generate on changes.
 ```
 
-_See code: [src/commands/codegen/generate.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.0/src/commands/codegen/generate.ts)_
+_See code: [src/commands/codegen/generate.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.1/src/commands/codegen/generate.ts)_
 
 ## `apollo help [COMMAND]`
 
@@ -141,7 +143,7 @@ OPTIONS
                      GraphQL queries in Javascript/Typescript code
 ```
 
-_See code: [src/commands/queries/check.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.0/src/commands/queries/check.ts)_
+_See code: [src/commands/queries/check.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.1/src/commands/queries/check.ts)_
 
 ## `apollo schema:check`
 
@@ -159,7 +161,7 @@ OPTIONS
   --key=key            The API key for the Apollo Engine service
 ```
 
-_See code: [src/commands/schema/check.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.0/src/commands/schema/check.ts)_
+_See code: [src/commands/schema/check.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.1/src/commands/schema/check.ts)_
 
 ## `apollo schema:download OUTPUT`
 
@@ -183,7 +185,7 @@ OPTIONS
   --key=key            The API key for the Apollo Engine service
 ```
 
-_See code: [src/commands/schema/download.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.0/src/commands/schema/download.ts)_
+_See code: [src/commands/schema/download.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.1/src/commands/schema/download.ts)_
 
 ## `apollo schema:publish`
 
@@ -201,7 +203,7 @@ OPTIONS
   --key=key            The API key for the Apollo Engine service
 ```
 
-_See code: [src/commands/schema/publish.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.0/src/commands/schema/publish.ts)_
+_See code: [src/commands/schema/publish.ts](https://github.com/apollographql/apollo-cli/blob/v1.4.1/src/commands/schema/publish.ts)_
 <!-- commandsstop -->
 
 # Code Generation
