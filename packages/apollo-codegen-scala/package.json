@@ -1,7 +1,7 @@
 {
   "name": "apollo-codegen-scala",
   "description": "Scala generator module for Apollo Codegen",
-  "version": "0.24.1",
+  "version": "0.24.2",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rm -rf lib",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "apollographql/apollo-cli"
+    "url": "ArcBlock/apollo-cli"
   },
   "author": "Martijn Walraven <martijn@martijnwalraven.com>",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "typescript": "^2.6.2"
   },
   "dependencies": {
-    "apollo-codegen-core": "^0.24.1",
+    "apollo-codegen-core": "^0.24.2",
     "change-case": "^3.0.1",
     "inflected": "^2.0.3"
   },
