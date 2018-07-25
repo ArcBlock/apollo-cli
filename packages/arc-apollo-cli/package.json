@@ -124,5 +124,5 @@
     "version": "oclif-dev readme && git add README.md"
   },
   "types": "lib/index.d.ts",
-  "private": true
+  "private": false
 }

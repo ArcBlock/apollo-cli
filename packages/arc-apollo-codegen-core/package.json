@@ -72,5 +72,6 @@
         "tsConfigFile": "tsconfig.test.json"
       }
     }
-  }
+  },
+  "private": false
 }

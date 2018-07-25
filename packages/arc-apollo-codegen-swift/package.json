@@ -62,5 +62,6 @@
         "skipBabel": true
       }
     }
-  }
+  },
+  "private": false
 }
