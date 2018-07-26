@@ -1,7 +1,7 @@
 {
   "name": "arc-apollo-codegen-core",
   "description": "Core generator APIs for Apollo Codegen with ArcBlock support",
-  "version": "0.25.1",
+  "version": "0.25.2",
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rm -rf lib",
