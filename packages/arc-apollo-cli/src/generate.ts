@@ -2,7 +2,7 @@ import { fs } from "arc-apollo-codegen-core/lib/localfs";
 import * as path from "path";
 
 import { loadAndMergeQueryDocuments } from "arc-apollo-codegen-core/lib/loading";
-import { validateQueryDocument } from "./validation";
+import { validateQueryDocument } from "arc-apollo-codegen-core/lib/validation";
 import { compileToIR, CompilerContext, CompilerOptions } from "arc-apollo-codegen-core/lib/compiler";
 import { compileToLegacyIR, CompilerOptions as LegacyCompilerOptions } from "arc-apollo-codegen-core/lib/compiler/legacyIR";
 import serializeToJSON from "arc-apollo-codegen-core/lib/serializeToJSON";

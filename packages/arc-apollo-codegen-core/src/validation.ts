@@ -12,7 +12,7 @@ import {
   TypeInfo
 } from 'graphql';
 
-import { ToolError, logError } from 'arc-apollo-codegen-core/lib/errors';
+import { ToolError, logError } from './errors';
 
 export function validateQueryDocument(schema: GraphQLSchema, document: DocumentNode, typeInfo?: TypeInfo) {
   const specifiedRulesToBeRemoved = [NoUnusedFragmentsRule, KnownDirectivesRule];

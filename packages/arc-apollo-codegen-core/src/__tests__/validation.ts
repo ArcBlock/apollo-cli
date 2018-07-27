@@ -1,6 +1,6 @@
 import * as path from 'path';
 
-import { loadSchema, loadAndMergeQueryDocuments } from 'arc-apollo-codegen-core/lib/loading';
+import { loadSchema, loadAndMergeQueryDocuments } from '../loading';
 
 import { validateQueryDocument } from '../validation';
 
