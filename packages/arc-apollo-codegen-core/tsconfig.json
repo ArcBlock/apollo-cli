@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base",
   "compilerOptions": {
+    "target": "es5",
     "declaration": true,
     "outDir": "lib"
   },

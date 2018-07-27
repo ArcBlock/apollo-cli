@@ -1,8 +1,10 @@
 {
   "extends": "../../tsconfig.base",
   "compilerOptions": {
+    "target": "es5",
     "declaration": true,
-    "outDir": "lib"
+    "outDir": "lib",
+    "downlevelIteration": true
   },
   "include" : [ "src/**/*" ],
   "exclude": [ "**/__tests__/*" ]
