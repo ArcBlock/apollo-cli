@@ -6,10 +6,14 @@ import * as path from 'path';
 
 export class ToolError extends Error {
   name: string = 'ToolError';
+  errors: ReadonlyArray<Error> = [];
 
-  constructor(message: string) {
+  constructor(message: string, errors?: ReadonlyArray<Error>) {
     super(message);
     this.message = message;
+    if(typeof errors != 'undefined') {
+      this.errors = errors;
+    }
   }
 }
 

@@ -28,7 +28,7 @@ export function validateQueryDocument(schema: GraphQLSchema, document: DocumentN
     for (const error of validationErrors) {
       logError(error);
     }
-    throw new ToolError('Validation of GraphQL query document failed');
+    throw new ToolError('Validation of GraphQL query document failed', validationErrors);
   }
 }
 
